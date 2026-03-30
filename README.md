@@ -31,7 +31,7 @@ Shared Jira CLI utility used as a dependency by other Jira skills. Provides a un
 ## Installation
 
 ```bash
-npx skills add <org>/agent-skills
+npx skills add marco-machado/agent-skills
 ```
 
 ## Configuration
