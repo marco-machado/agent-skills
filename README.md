@@ -22,12 +22,6 @@ Fetch a Jira ticket and produce a structured analysis document.
 - Scans the codebase for relevant files and surfaces code references
 - Produces a structured `docs/jira-tickets/TICKET_KEY/TICKET_KEY.md` document
 
-### jira-cli
-
-Shared Jira CLI utility used as a dependency by other Jira skills. Provides a unified interface for interacting with the Jira REST API.
-
-> Not invoked directly — used internally by other skills in this collection.
-
 ## Installation
 
 ```bash

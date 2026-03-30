@@ -1,7 +1,7 @@
 ---
 name: jira-fetch-ticket
 description: Fetch a Jira ticket and create a structured analysis document. Use when starting work on a ticket or when you need full context on a Jira issue.
-compatibility: Requires the jira-cli skill. Python 3.8+, git, and network access to your Jira instance.
+compatibility: Requires Python 3.8+ and network access to your Jira instance. git is optional (used to infer project key from branch name when only a ticket number is provided).
 args:
   - name: ticket
     description: "Jira ticket ID (e.g. PROJ-189 or just 189)"
@@ -26,7 +26,7 @@ Normalize the `{{ticket}}` argument:
 Run the fetch command:
 
 ```bash
-python3 ../jira-cli/scripts/jira.py fetch {{ticket}}
+python3 fetch_ticket.py {{ticket}}
 ```
 
 If the script fails, report the error and stop.
