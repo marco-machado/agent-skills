@@ -10,26 +10,20 @@ Shared utility script used as a dependency by other Jira skills. Not invoked dir
 
 ## Configuration
 
-**`.claude/settings.json`** — commit this with your project:
-```json
-{
-  "env": {
-    "JIRA_BASE_URL": "https://yourcompany.atlassian.net"
-  }
-}
+**`.env`** — commit this with your project:
+```
+JIRA_BASE_URL=https://yourcompany.atlassian.net
 ```
 
-**`.claude/settings.local.json`** — never commit this (add to `.gitignore`):
-```json
-{
-  "env": {
-    "JIRA_EMAIL": "you@yourcompany.com",
-    "JIRA_API_TOKEN": "your-api-token"
-  }
-}
+**`.env.local`** — never commit this (add to `.gitignore`):
+```
+JIRA_EMAIL=you@yourcompany.com
+JIRA_API_TOKEN=your-api-token
 ```
 
 Generate an API token at: https://id.atlassian.com/manage-profile/security/api-tokens
+
+Variables can also be set directly in the environment — the script checks `os.environ` first, then falls back to the `.env` files.
 
 ## Commands
 

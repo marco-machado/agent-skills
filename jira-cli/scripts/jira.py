@@ -5,9 +5,11 @@ Jira CLI for agent skills.
 Usage:
   python3 jira.py fetch <ticket>    # PROJ-123 or just 123 (infers project from branch)
 
-Configuration (via environment variables):
-  .claude/settings.json      -> JIRA_BASE_URL
-  .claude/settings.local.json -> JIRA_EMAIL, JIRA_API_TOKEN
+Configuration:
+  Set via environment variables, or place in .env / .env.local at the repo root:
+
+  .env        (commit this)  -> JIRA_BASE_URL
+  .env.local  (gitignore)    -> JIRA_EMAIL, JIRA_API_TOKEN
 """
 
 import json
@@ -24,20 +26,57 @@ DEV_STATUS_TYPES = ["pullrequest", "branch"]
 DEV_STATUS_APP_TYPES = ["stash", "bitbucket"]
 
 
+# --- Repo & paths ---
+
+def get_repo_root():
+    result = subprocess.run(
+        ["git", "rev-parse", "--show-toplevel"],
+        capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        print("ERROR: Not in a git repository.")
+        sys.exit(1)
+    return result.stdout.strip()
+
+
+def tickets_dir():
+    return os.path.join(get_repo_root(), ".claude", "jira-tickets")
+
+
 # --- Config & Auth ---
 
+def load_dotenv_file(path):
+    """Load key=value pairs from a .env file into a dict."""
+    result = {}
+    if not os.path.exists(path):
+        return result
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                result[k.strip()] = v.strip()
+    return result
+
+
 def load_config():
+    repo_root = get_repo_root()
+    dotenv = {
+        **load_dotenv_file(os.path.join(repo_root, ".env")),
+        **load_dotenv_file(os.path.join(repo_root, ".env.local")),
+    }
+
     sources = {
-        "JIRA_BASE_URL": "settings.json (project config)",
-        "JIRA_EMAIL": "settings.local.json (user credentials)",
-        "JIRA_API_TOKEN": "settings.local.json (user credentials)",
+        "JIRA_BASE_URL": ".env (project config)",
+        "JIRA_EMAIL": ".env.local (user credentials)",
+        "JIRA_API_TOKEN": ".env.local (user credentials)",
     }
     config = {}
     missing = []
     for key, source in sources.items():
-        val = os.environ.get(key)
+        val = os.environ.get(key) or dotenv.get(key)
         if not val:
-            missing.append(f"  {key}  →  .claude/{source}")
+            missing.append(f"  {key}  →  {source}")
         else:
             config[key] = val
     if missing:
@@ -78,23 +117,6 @@ def normalize_key(raw):
     print(f"ERROR: Invalid ticket ID: {raw!r}")
     print("       Use PROJ-123 format or just the ticket number.")
     sys.exit(1)
-
-
-# --- Repo & paths ---
-
-def get_repo_root():
-    result = subprocess.run(
-        ["git", "rev-parse", "--show-toplevel"],
-        capture_output=True, text=True
-    )
-    if result.returncode != 0:
-        print("ERROR: Not in a git repository.")
-        sys.exit(1)
-    return result.stdout.strip()
-
-
-def tickets_dir():
-    return os.path.join(get_repo_root(), ".claude", "jira-tickets")
 
 
 # --- HTTP helpers ---
