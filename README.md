@@ -20,7 +20,7 @@ Fetch a Jira ticket and produce a structured analysis document.
 - Fetches ticket fields, comments, linked issues, subtasks, and dev status (branches, PRs)
 - Checks for parent epic context if already fetched
 - Scans the codebase for relevant files and surfaces code references
-- Produces a structured `.claude/jira-tickets/TICKET_KEY/TICKET_KEY.md` document
+- Produces a structured `docs/jira-tickets/TICKET_KEY/TICKET_KEY.md` document
 
 ### jira-cli
 

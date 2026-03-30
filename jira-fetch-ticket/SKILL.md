@@ -10,7 +10,7 @@ args:
 
 # Jira Fetch Ticket
 
-Fetch a Jira ticket and produce a structured analysis document in `.claude/jira-tickets/`.
+Fetch a Jira ticket and produce a structured analysis document in `docs/jira-tickets/`.
 
 ## Instructions
 
@@ -31,20 +31,20 @@ python3 ../jira-cli/scripts/jira.py fetch {{ticket}}
 
 If the script fails, report the error and stop.
 
-After the script runs, read the raw JSON from `.claude/jira-tickets/${TICKET_KEY}/raw.json` for the full ticket data.
+After the script runs, read the raw JSON from `docs/jira-tickets/${TICKET_KEY}/raw.json` for the full ticket data.
 
 ### Step 3: Check for Parent Epic Context
 
 If the ticket has a `parent` field:
 1. Extract the parent key (e.g. `PROJ-175`)
-2. Look for `.claude/jira-tickets/${PARENT_KEY}/${PARENT_KEY}.md` using Glob
+2. Look for `docs/jira-tickets/${PARENT_KEY}/${PARENT_KEY}.md` using Glob
 3. If found, read it for additional context about the epic's goals and scope
 
 ### Step 4: Check for Linked Issue Context
 
 If the ticket has entries in `issuelinks`:
 1. Extract the key of each linked issue
-2. For each, look for `.claude/jira-tickets/${LINKED_KEY}/${LINKED_KEY}.md` using Glob
+2. For each, look for `docs/jira-tickets/${LINKED_KEY}/${LINKED_KEY}.md` using Glob
 3. If found, read it for additional context — note the link type (e.g. "blocks", "is blocked by", "relates to") when using the context
 
 ### Step 5: Analyze the Ticket
@@ -62,7 +62,7 @@ Using the fetched data, any epic context, and any linked issue context:
 
 ### Step 6: Create the Ticket Document
 
-Write `.claude/jira-tickets/${TICKET_KEY}/${TICKET_KEY}.md` with this structure:
+Write `docs/jira-tickets/${TICKET_KEY}/${TICKET_KEY}.md` with this structure:
 
 ```markdown
 # ${TICKET_KEY}: {Summary}
@@ -123,7 +123,7 @@ Write `.claude/jira-tickets/${TICKET_KEY}/${TICKET_KEY}.md` with this structure:
 
 ### Step 7: Report
 
-1. Confirm the file was created at `.claude/jira-tickets/${TICKET_KEY}/${TICKET_KEY}.md`
+1. Confirm the file was created at `docs/jira-tickets/${TICKET_KEY}/${TICKET_KEY}.md`
 2. Show a brief summary: ticket title, type, status, and top-level analysis
 3. Highlight any **ambiguities or missing info** to clarify before starting work
 4. Mention subtasks or linked issues as potential scope considerations

@@ -27,7 +27,7 @@ DEV_STATUS_APP_TYPES = ["stash", "bitbucket"]
 
 
 def tickets_dir():
-    return os.path.join(os.getcwd(), ".claude", "jira-tickets")
+    return os.path.join(os.getcwd(), "docs", "jira-tickets")
 
 
 # --- Config & Auth ---

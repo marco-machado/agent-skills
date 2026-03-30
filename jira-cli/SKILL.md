@@ -29,7 +29,7 @@ Variables can also be set directly in the environment — the script checks `os.
 
 ### `fetch <ticket>`
 
-Fetches a ticket and saves raw JSON to `.claude/jira-tickets/<TICKET_KEY>/raw.json`. Prints a summary to stdout.
+Fetches a ticket and saves raw JSON to `docs/jira-tickets/<TICKET_KEY>/raw.json`. Prints a summary to stdout.
 
 ```bash
 python3 ../jira-cli/scripts/jira.py fetch PROJ-123
