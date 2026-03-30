@@ -54,6 +54,7 @@ If the ticket has a `parent` field:
 1. Extract the parent key (e.g. `PROJ-175`)
 2. Look for `docs/jira-tickets/${PARENT_KEY}/${PARENT_KEY}.md` using Glob
 3. If found, read it for additional context about the epic's goals and scope
+4. If not found, ask the user if they'd like to fetch the parent epic — if yes, run `python3 fetch_ticket.py ${PARENT_KEY}` and read the resulting document
 
 ### Step 4: Check for Linked Issue Context
 
@@ -61,6 +62,7 @@ If the ticket has entries in `issuelinks`:
 1. Extract the key of each linked issue
 2. For each, look for `docs/jira-tickets/${LINKED_KEY}/${LINKED_KEY}.md` using Glob
 3. If found, read it for additional context — note the link type (e.g. "blocks", "is blocked by", "relates to") when using the context
+4. If any are not found, list them and ask the user if they'd like to fetch them — if yes, run `python3 fetch_ticket.py ${LINKED_KEY}` for each confirmed and read the resulting documents
 
 ### Step 5: Analyze the Ticket
 
