@@ -1,7 +1,7 @@
 ---
 name: jira-cli
 description: Shared Jira CLI utility used by other Jira skills. Provides a unified interface for interacting with the Jira REST API — fetching tickets, and extensible for comments, transitions, and more. Not invoked directly by users.
-compatibility: Requires Python 3.8+, git, and network access to your Jira instance.
+compatibility: Requires Python 3.8+ and network access to your Jira instance. git is optional (used to infer project key from branch name when only a ticket number is provided).
 ---
 
 # Jira CLI

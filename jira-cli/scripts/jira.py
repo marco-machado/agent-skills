@@ -3,10 +3,10 @@
 Jira CLI for agent skills.
 
 Usage:
-  python3 jira.py fetch <ticket>    # PROJ-123 or just 123 (infers project from branch)
+  python3 jira.py fetch <ticket>    # PROJ-123 or just 123 (infers project from git branch)
 
 Configuration:
-  Set via environment variables, or place in .env / .env.local at the repo root:
+  Set via environment variables, or place in .env / .env.local in the current directory:
 
   .env        (commit this)  -> JIRA_BASE_URL
   .env.local  (gitignore)    -> JIRA_EMAIL, JIRA_API_TOKEN
@@ -26,21 +26,8 @@ DEV_STATUS_TYPES = ["pullrequest", "branch"]
 DEV_STATUS_APP_TYPES = ["stash", "bitbucket"]
 
 
-# --- Repo & paths ---
-
-def get_repo_root():
-    result = subprocess.run(
-        ["git", "rev-parse", "--show-toplevel"],
-        capture_output=True, text=True
-    )
-    if result.returncode != 0:
-        print("ERROR: Not in a git repository.")
-        sys.exit(1)
-    return result.stdout.strip()
-
-
 def tickets_dir():
-    return os.path.join(get_repo_root(), ".claude", "jira-tickets")
+    return os.path.join(os.getcwd(), ".claude", "jira-tickets")
 
 
 # --- Config & Auth ---
@@ -60,10 +47,10 @@ def load_dotenv_file(path):
 
 
 def load_config():
-    repo_root = get_repo_root()
+    cwd = os.getcwd()
     dotenv = {
-        **load_dotenv_file(os.path.join(repo_root, ".env")),
-        **load_dotenv_file(os.path.join(repo_root, ".env.local")),
+        **load_dotenv_file(os.path.join(cwd, ".env")),
+        **load_dotenv_file(os.path.join(cwd, ".env.local")),
     }
 
     sources = {
