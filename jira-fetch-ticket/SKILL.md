@@ -29,7 +29,22 @@ Run the fetch command:
 python3 fetch_ticket.py {{ticket}}
 ```
 
-If the script fails, report the error and stop.
+If the script fails due to missing environment variables, help the user set them up:
+1. Ask how they'd like to provide the variables — via `.env` files, their agent's config, or shell environment.
+2. If using `.env` files:
+   - Check if `.env` exists in the project root — if not, create it and ask the user for their Jira instance URL:
+     ```
+     JIRA_BASE_URL=https://yourcompany.atlassian.net
+     ```
+   - Check if `.env.local` exists — if not, create it and ask the user for their email and API token (direct them to https://id.atlassian.com/manage-profile/security/api-tokens to generate one):
+     ```
+     JIRA_EMAIL=you@yourcompany.com
+     JIRA_API_TOKEN=your-api-token
+     ```
+   - Remind the user to add `.env.local` to `.gitignore` if not already present.
+3. Re-run the script once configured.
+
+If the script fails for any other reason, report the error and stop.
 
 After the script runs, read the raw JSON from `docs/jira-tickets/${TICKET_KEY}/raw.json` for the full ticket data.
 

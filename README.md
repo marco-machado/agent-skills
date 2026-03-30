@@ -30,22 +30,36 @@ npx skills add marco-machado/agent-skills
 
 ## Configuration
 
-Skills in this collection require the following environment variables, split across two files in your project's `.claude/` directory:
+The following environment variables are required:
 
-**`.env`** — commit this with your project:
+| Variable | Description |
+|---|---|
+| `JIRA_BASE_URL` | Your Jira instance URL (e.g. `https://yourcompany.atlassian.net`) |
+| `JIRA_EMAIL` | Your Jira account email |
+| `JIRA_API_TOKEN` | Your Jira API token |
+
+Generate an API token at https://id.atlassian.com/manage-profile/security/api-tokens.
+
+The script checks `os.environ` first, so any of the following approaches work:
+
+**`.env` files** (recommended for projects) — the script automatically loads these from the project root:
 ```
+# .env — commit this
 JIRA_BASE_URL=https://yourcompany.atlassian.net
-```
 
-**`.env.local`** — never commit this (add to `.gitignore`):
-```
+# .env.local — add to .gitignore, never commit
 JIRA_EMAIL=you@yourcompany.com
 JIRA_API_TOKEN=your-api-token
 ```
 
-Generate an API token at https://id.atlassian.com/manage-profile/security/api-tokens.
+**Agent config** — set via your agent's native environment mechanism, e.g. Claude Code's `.claude/settings.json` (`env` section) and `.claude/settings.local.json` for secrets.
 
-Variables can also be set directly in the environment — the script checks `os.environ` first, then falls back to the `.env` files.
+**Shell environment** — export directly before running:
+```bash
+export JIRA_BASE_URL=https://yourcompany.atlassian.net
+export JIRA_EMAIL=you@yourcompany.com
+export JIRA_API_TOKEN=your-api-token
+```
 
 ## Usage
 
