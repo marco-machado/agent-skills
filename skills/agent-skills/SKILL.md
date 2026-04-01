@@ -9,6 +9,9 @@ description: >
   SKILL.md, restructure a skill directory, or understand how to publish/share a skill.
   Use even if they don't explicitly mention "agentskills" or the open format.
 compatibility: Works in any environment. Validation script requires Python 3.8+.
+metadata:
+  version: "1.0.0"
+  author: marco-machado
 ---
 
 # Agent Skills — Open Format

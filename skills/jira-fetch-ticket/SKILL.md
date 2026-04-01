@@ -2,6 +2,9 @@
 name: jira-fetch-ticket
 description: Fetch a Jira ticket and create a structured analysis document. Use when starting work on a ticket or when you need full context on a Jira issue.
 compatibility: Requires Python 3.8+ and network access to your Jira instance. git is optional (used to infer project key from branch name when only a ticket number is provided).
+metadata:
+  version: "1.0.0"
+  author: marco-machado
 args:
   - name: ticket
     description: "Jira ticket ID (e.g. PROJ-189 or just 189)"
