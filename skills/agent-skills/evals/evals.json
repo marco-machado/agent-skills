@@ -1,0 +1,50 @@
+{
+  "skill_name": "agent-skills",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to create a skill for our internal Jira workflow. The skill should help Claude automatically fetch a Jira ticket by ID, pull linked issues and comments, and scan the codebase for relevant files. We use Python, the Jira REST API, and store tickets in docs/jira/. Can you create a proper SKILL.md for this?",
+      "expected_output": "A well-structured skill directory with SKILL.md containing correct frontmatter (name, description), clear instructions covering the workflow steps, and optionally a scripts/ directory or references/. The name must be lowercase with hyphens, description must be under 1024 chars and describe when to trigger.",
+      "files": [],
+      "assertions": [
+        "The output includes a SKILL.md file",
+        "The name field is all lowercase with hyphens only (no uppercase, no spaces, no underscores)",
+        "The name field matches the skill directory name",
+        "The description is at least 80 characters and describes when to trigger the skill",
+        "The description mentions Jira ticket context (ticket ID, fetch, or related keywords)",
+        "The SKILL.md body includes concrete workflow steps (not just generic advice)",
+        "The body references Python or the Jira REST API specifically",
+        "The body mentions the docs/jira/ output path or similar output location"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We have a runbook for deploying our microservices: first run `make test`, then `docker build -t myapp:$VERSION .`, then push to ECR, then update the ECS task definition JSON, then run `aws ecs update-service`. I keep having to walk Claude through this every time. Can you turn this into a reusable agent skill?",
+      "expected_output": "A skill with proper SKILL.md frontmatter, instructions that capture the exact deploy sequence with the specific commands, a gotchas section for the non-obvious parts, and possibly a bundled shell script in scripts/. The skill should be scoped to this deployment workflow.",
+      "files": [],
+      "assertions": [
+        "The output includes a SKILL.md file",
+        "The name field is all lowercase with hyphens only",
+        "The description triggers on deploy/deployment prompts",
+        "The SKILL.md body includes all five steps: make test, docker build, ECR push, ECS task definition update, aws ecs update-service",
+        "The commands are presented in the correct order",
+        "The body includes the exact docker build command or close variant (myapp, $VERSION)",
+        "The skill is scoped to this specific deployment workflow, not generic CI/CD advice"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I wrote this SKILL.md but I'm not sure it's correct:\n\n---\nname: My-Cool-Skill\ndescription: Helps with stuff.\n---\n\n# Instructions\nDo things.\n\nCan you check it and fix any issues?",
+      "expected_output": "Identification of all format violations (name uses uppercase, description is too vague/short, body is too thin), explanation of why each is a problem, and a corrected version of the SKILL.md with a proper name like 'my-cool-skill', a descriptive trigger-oriented description, and more useful body content.",
+      "files": [],
+      "assertions": [
+        "The response identifies the uppercase/hyphen name violation (My-Cool-Skill is invalid)",
+        "The response identifies the vague description problem (Helps with stuff. is insufficient for triggering)",
+        "The fixed SKILL.md has a valid name (lowercase letters and hyphens only, e.g. my-cool-skill)",
+        "The fixed description is at least 60 characters and describes when/why to use the skill",
+        "The response explains WHY the name is invalid (not just that it is)",
+        "The response explains WHY the description is insufficient (triggering mechanism)"
+      ]
+    }
+  ]
+}
