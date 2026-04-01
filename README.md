@@ -6,7 +6,22 @@ Skills follow the [Agent Skills](https://agentskills.io/) format.
 
 ## Available Skills
 
-### jira-fetch-ticket
+### [agent-skills](skills/agent-skills/)
+
+Create agent skills following the agentskills open format.
+
+**Use when:**
+- Creating a new skill from scratch
+- Converting a workflow or runbook into a reusable skill
+- Validating or improving an existing SKILL.md
+
+**Features:**
+- Full agentskills format spec and frontmatter constraints
+- Best practices for writing effective skill instructions
+- Validation script to check name, description, and structure
+- References for eval workflow and description optimization
+
+### [jira-fetch-ticket](skills/jira-fetch-ticket/)
 
 Fetch a Jira ticket and produce a structured analysis document.
 
@@ -75,7 +90,7 @@ Fetch ticket 189
 
 ## Skill Structure
 
-Each skill contains:
+Skills live under `skills/` and each contains:
 - `SKILL.md` - Instructions for the agent
 - `scripts/` - Helper scripts for automation (optional)
 - `references/` - Supporting documentation (optional)
