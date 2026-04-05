@@ -21,6 +21,35 @@ Create agent skills following the agentskills open format.
 - Validation script to check name, description, and structure
 - References for eval workflow and description optimization
 
+### [research](skills/research/)
+
+Conduct preliminary research on a topic and generate a structured outline.
+
+**Use when:**
+- Starting research on a new topic (technology survey, competitive analysis, academic review)
+- Needing a structured list of items and fields before diving deep
+
+**Features:**
+- Interactive framework generation with web search augmentation
+- Produces `outline.yaml` (items + execution config) and `fields.yaml` (field schema)
+- Supports merging with existing field definitions
+- Self-contained web search methodology guide
+
+### [research-deep](skills/research-deep/)
+
+Execute deep research on every item in an outline, producing structured JSON and a markdown report.
+
+**Use when:**
+- You have an `outline.yaml` + `fields.yaml` (from `/research` or hand-crafted)
+- You need detailed, structured data on each item in the outline
+
+**Features:**
+- Parallel batch execution with configurable concurrency
+- Resume support — skips already-completed items on re-run
+- Bundled validation script checks JSON output against field schema
+- Generates a consolidated markdown report with table of contents
+- Handles uncertain values, extra fields, and slug collisions
+
 ### [jira-fetch-ticket](skills/jira-fetch-ticket/)
 
 Fetch a Jira ticket and produce a structured analysis document. See [setup and usage](skills/jira-fetch-ticket/README.md).
