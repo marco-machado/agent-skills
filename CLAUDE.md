@@ -50,11 +50,16 @@ The `agent-skills-workspace/` directory is the eval output space — never edit 
 - `metadata.version` in each `SKILL.md`: bump only when that skill changes
 - Tag releases with `git tag v<version>`
 
+## Git workflow
+
+- Branching: GitHub Flow
+- Commits: Conventional Commits — use the skill name as scope when a commit is scoped to one skill
+- Release: tag `main` with `v<version>` (see Versioning above)
+
 ## Adding a new skill
 
-1. Create `skills/<skill-name>/SKILL.md` with valid frontmatter
-2. Add scripts to `skills/<skill-name>/scripts/` if needed
-3. Run the validator: `python skills/agent-skills/scripts/validate.py skills/<skill-name>/`
-4. Add an entry to the `agent-skills` skill's `evals/evals.json` if evaluating
-5. Update `README.md` with the new skill entry
-6. Bump `package.json` version and add `metadata.version` to the new SKILL.md
+Before creating or scaffolding a new skill, read `skills/agent-skills/SKILL.md` — it's the canonical format spec and authoring workflow. Follow it for authoring, then complete these repo-specific follow-ups:
+
+- Add an entry to the `agent-skills` skill's `evals/evals.json` if evaluating
+- Update `README.md` with the new skill entry
+- Bump `package.json` version and add `metadata.version` to the new SKILL.md
