@@ -50,6 +50,19 @@ Execute deep research on every item in an outline, producing structured JSON and
 - Generates a consolidated markdown report with table of contents
 - Handles uncertain values, extra fields, and slug collisions
 
+### [caveman](skills/caveman/)
+
+Respond in broken caveman-speak — short sentences, no filler, dropped articles.
+
+**Use when:**
+- User asks for caveman mode, caveman style, or broken English responses
+- User wants a terse, action-first response register until told otherwise
+
+**Features:**
+- Style rules with examples (normal → caveman transforms)
+- Preserves code, file paths, and tool output literally — only prose changes
+- Explicit stop conditions to exit the mode
+
 ### [jira-fetch-ticket](skills/jira-fetch-ticket/)
 
 Fetch a Jira ticket and produce a structured analysis document. See [setup and usage](skills/jira-fetch-ticket/README.md).
