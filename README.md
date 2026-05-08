@@ -4,6 +4,18 @@ A collection of skills for AI coding agents. Skills are packaged instructions an
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
+## Installation
+
+```bash
+npx skills add marco-machado/agent-skills
+```
+
+> **Better alternative (separate tool):** [`gh skill install`](https://cli.github.com/manual/gh_skill_install) — GitHub CLI's first-party agent skills installer (v2.90.0+). It supports 40+ host-aware install paths, version pinning, integrity checks, and writes provenance metadata into each `SKILL.md`. Requires a separate install of the GitHub CLI. Once that's available:
+>
+> ```bash
+> gh skill install marco-machado/agent-skills <skill-name>
+> ```
+
 ## Available Skills
 
 ### [agent-skills](skills/agent-skills/)
@@ -94,25 +106,6 @@ Map a codebase by sequentially analyzing four focus areas (`tech`, `arch`, `qual
 - Update mode lets the user re-run only selected focus areas
 - Bundled secrets scanner runs over the generated docs and warns on potential leaks
 - Per-focus exploration commands and document templates live in `references/`
-
-## Installation
-
-```bash
-npx skills add marco-machado/agent-skills
-```
-
-> **Better alternative (separate tool):** [`gh skill install`](https://cli.github.com/manual/gh_skill_install) — GitHub CLI's first-party agent skills installer (v2.90.0+). It supports 40+ host-aware install paths, version pinning, integrity checks, and writes provenance metadata into each `SKILL.md`. Requires a separate install of the GitHub CLI. Once that's available:
->
-> ```bash
-> gh skill install marco-machado/agent-skills <skill-name>
-> ```
-
-## Skill Structure
-
-Skills live under `skills/` and each contains:
-- `SKILL.md` - Instructions for the agent
-- `scripts/` - Helper scripts for automation (optional)
-- `references/` - Supporting documentation (optional)
 
 ## License
 
