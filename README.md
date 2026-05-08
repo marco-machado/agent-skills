@@ -62,22 +62,6 @@ Execute deep research on every item in an outline, producing structured JSON and
 - Generates a consolidated markdown report with table of contents
 - Handles uncertain values, extra fields, and slug collisions
 
-### [jira-fetch-ticket](skills/jira-fetch-ticket/)
-
-Fetch a Jira ticket and produce a structured analysis document. See [setup and usage](skills/jira-fetch-ticket/README.md).
-
-**Use when:**
-- Starting work on a Jira ticket
-- Needing full context on a Jira issue before implementing
-- Analyzing acceptance criteria, linked issues, and codebase impact
-
-**Features:**
-- Accepts full ticket ID (`PROJ-123`) or just the number (`123`, inferred from git branch)
-- Fetches ticket fields, comments, linked issues, subtasks, and dev status (branches, PRs)
-- Checks for parent epic context if already fetched
-- Scans the codebase for relevant files and surfaces code references
-- Produces a structured `docs/jira-tickets/TICKET_KEY/TICKET_KEY.md` document
-
 ### [codebase-mapper](skills/codebase-mapper/)
 
 Map a codebase by sequentially analyzing four focus areas (`tech`, `arch`, `quality`, `concerns`) and emit structured analysis docs to `docs/generated/`.
