@@ -33,16 +33,7 @@ skills/
     references/       # detail docs loaded on demand; tell agent when to read each
     evals/
       evals.json      # test cases: prompt + expected_output + assertions
-
-agent-skills-workspace/
-  iteration-N/
-    eval-<name>/
-      with_skill/     # outputs/, timing.json, grading.json
-      without_skill/  # same structure — baseline comparison
-    benchmark.json    # aggregated pass_rate, time, token deltas
 ```
-
-The `agent-skills-workspace/` directory is the eval output space — never edit it by hand; it's produced by running evals.
 
 ## Versioning
 
