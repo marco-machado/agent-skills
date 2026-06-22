@@ -78,6 +78,21 @@ Map a codebase by sequentially analyzing four focus areas (`tech`, `arch`, `qual
 - Bundled secrets scanner runs over the generated docs and warns on potential leaks
 - Per-focus exploration commands and document templates live in `references/`
 
+### [behavioral-friction](skills/behavioral-friction/)
+
+Analyze Claude Code session transcripts for behavioral friction and propose durable CLAUDE.md rules.
+
+**Use when:**
+- Improving your CLAUDE.md from real session behavior rather than guesswork
+- Finding recurring interaction patterns (premature execution, scope creep, ignored preferences)
+- Auditing where the model keeps misreading your intent
+
+**Features:**
+- Deterministic Python preprocessor scans `~/.claude/projects`, excludes subagent logs, strips tool payloads, and redacts secrets before analysis
+- Per-session extraction via parallel Task subagents, classified against an 8-category behavioral taxonomy
+- Confidence scored by distinct-session recurrence, so one noisy session can't inflate a pattern
+- Outputs a report with evidence-backed, copy-pasteable CLAUDE.md rules
+
 ## License
 
 MIT
