@@ -43,12 +43,21 @@ A durable rule is:
 - Testable: you could evaluate in a future session whether the rule was
   followed or violated
 - Minimal: one instruction per rule, no compound sentences with "and"
+- Paste-ready: the value is the literal text to insert into CLAUDE.md as a new
+  bullet, or to replace an existing bullet wholesale. If the pattern tightens a
+  rule the user already has, write the complete final wording, not an
+  instruction to change it.
 
 A durable rule is NOT:
 - A coding convention ("use Vitest not Jest")
 - A style preference that belongs in output-style config
 - A restatement of the user's frustration ("don't be annoying")
 - Aspirational fluff ("strive to understand the user's intent")
+- Meta-commentary about the rule instead of the rule itself ("these map to
+  rules you already have", "no new rule needed; the gap is adherence", "if
+  anything, tighten the existing ban to ..."). Even when the user's current
+  CLAUDE.md is visible in context and the pattern overlaps it, emit the clean
+  final rule text, never an observation about it.
 
 ### Output format
 

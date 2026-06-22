@@ -177,6 +177,12 @@ Date range: YYYY-MM-DD to YYYY-MM-DD
 [Clean-session count and a note that clean sessions are a healthy signal]
 ```
 
+Every "Proposed CLAUDE.md rule" must be the literal text to paste under a
+CLAUDE.md bullet -- ready to insert as a new rule or to replace an existing one
+wholesale. Never put commentary there ("you already have this", "the gap is
+adherence", "if anything, tighten X to Y"); write the final rule itself. The
+"Proposed CLAUDE.md Block" is those rule texts concatenated, paste-ready as-is.
+
 Present the report. Ask: "Want me to append these rules to your CLAUDE.md, or
 review and pick?" Do not edit CLAUDE.md without an explicit yes.
 
